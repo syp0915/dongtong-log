@@ -1,0 +1,8 @@
+# Created by .ignore support plugin (hsz.mobi)
+/target
+.classpath
+.settings/
+.project
+log-provider.iml
+.*
+!.gitignore

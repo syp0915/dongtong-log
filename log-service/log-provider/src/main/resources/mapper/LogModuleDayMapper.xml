@@ -1,0 +1,297 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shfc.log.dao.LogModuleDayMapper">
+  <resultMap id="BaseResultMap" type="com.shfc.log.domain.LogModuleDay">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="day" jdbcType="INTEGER" property="day" />
+    <result column="count" jdbcType="INTEGER" property="count" />
+    <result column="merchant_id" jdbcType="BIGINT" property="merchantId" />
+    <result column="channel_no" jdbcType="VARCHAR" property="channelNo" />
+    <result column="module" jdbcType="VARCHAR" property="module" />
+    <result column="clazz" jdbcType="VARCHAR" property="clazz" />
+    <result column="method" jdbcType="VARCHAR" property="method" />
+    <result column="avg_period" jdbcType="BIGINT" property="avgPeriod" />
+    <result column="record_time" jdbcType="TIMESTAMP" property="recordTime" />
+    <result column="fail_count" jdbcType="BIGINT" property="failCount" />
+    <result column="success_count" jdbcType="BIGINT" property="successCount" />
+    <result column="creator" jdbcType="BIGINT" property="creator" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="modifier" jdbcType="BIGINT" property="modifier" />
+    <result column="modify_time" jdbcType="TIMESTAMP" property="modifyTime" />
+    <result column="version" jdbcType="BIGINT" property="version" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, day, count, merchant_id, channel_no, module, clazz, method, avg_period, record_time, 
+    fail_count, success_count, creator, create_time, modifier, modify_time, version
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    <!--
+    开发负责人：lv bin
+    功能说明：根据主键获取一条数据库记录
+    是否有缓存：无
+    -->
+    select 
+    <include refid="Base_Column_List" />
+    from log_module_day
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    <!--
+    开发负责人：lv bin
+    功能说明：根据主键删除数据库的记录
+    是否有缓存：无
+    -->
+    delete from log_module_day
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" keyProperty="id" parameterType="com.shfc.log.domain.LogModuleDay" useGeneratedKeys="true">
+    <!--
+    开发负责人：lv bin
+    功能说明：插入数据库记录
+    是否有缓存：无
+    -->
+    insert into log_module_day (id, day, count, 
+      merchant_id, channel_no, module, 
+      clazz, method, avg_period, 
+      record_time, fail_count, success_count, 
+      creator, create_time, modifier, 
+      modify_time, version)
+    values (#{id,jdbcType=BIGINT}, #{day,jdbcType=INTEGER}, #{count,jdbcType=INTEGER}, 
+      #{merchantId,jdbcType=BIGINT}, #{channelNo,jdbcType=VARCHAR}, #{module,jdbcType=VARCHAR}, 
+      #{clazz,jdbcType=VARCHAR}, #{method,jdbcType=VARCHAR}, #{avgPeriod,jdbcType=BIGINT}, 
+      #{recordTime,jdbcType=TIMESTAMP}, #{failCount,jdbcType=BIGINT}, #{successCount,jdbcType=BIGINT}, 
+      #{creator,jdbcType=BIGINT}, now(), #{modifier,jdbcType=BIGINT}, 
+      #{modifyTime,jdbcType=TIMESTAMP}, 0)
+  </insert>
+  <insert id="insertSelective" keyProperty="id" parameterType="com.shfc.log.domain.LogModuleDay" useGeneratedKeys="true">
+    <!--
+    开发负责人：lv bin
+    功能说明：选择性插入数据库记录
+    是否有缓存：无
+    -->
+    insert into log_module_day
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="day != null">
+        day,
+      </if>
+      <if test="count != null">
+        count,
+      </if>
+      <if test="merchantId != null">
+        merchant_id,
+      </if>
+      <if test="channelNo != null">
+        channel_no,
+      </if>
+      <if test="module != null">
+        module,
+      </if>
+      <if test="clazz != null">
+        clazz,
+      </if>
+      <if test="method != null">
+        method,
+      </if>
+      <if test="avgPeriod != null">
+        avg_period,
+      </if>
+      <if test="recordTime != null">
+        record_time,
+      </if>
+      <if test="failCount != null">
+        fail_count,
+      </if>
+      <if test="successCount != null">
+        success_count,
+      </if>
+      <if test="creator != null">
+        creator,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="modifier != null">
+        modifier,
+      </if>
+      <if test="modifyTime != null">
+        modify_time,
+      </if>
+      <if test="version != null">
+        version,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="day != null">
+        #{day,jdbcType=INTEGER},
+      </if>
+      <if test="count != null">
+        #{count,jdbcType=INTEGER},
+      </if>
+      <if test="merchantId != null">
+        #{merchantId,jdbcType=BIGINT},
+      </if>
+      <if test="channelNo != null">
+        #{channelNo,jdbcType=VARCHAR},
+      </if>
+      <if test="module != null">
+        #{module,jdbcType=VARCHAR},
+      </if>
+      <if test="clazz != null">
+        #{clazz,jdbcType=VARCHAR},
+      </if>
+      <if test="method != null">
+        #{method,jdbcType=VARCHAR},
+      </if>
+      <if test="avgPeriod != null">
+        #{avgPeriod,jdbcType=BIGINT},
+      </if>
+      <if test="recordTime != null">
+        #{recordTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="failCount != null">
+        #{failCount,jdbcType=BIGINT},
+      </if>
+      <if test="successCount != null">
+        #{successCount,jdbcType=BIGINT},
+      </if>
+      <if test="creator != null">
+        #{creator,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null">
+        now(),
+      </if>
+      <if test="modifier != null">
+        #{modifier,jdbcType=BIGINT},
+      </if>
+      <if test="modifyTime != null">
+        #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="version != null">
+        0,
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.shfc.log.domain.LogModuleDay">
+    <!--
+    开发负责人：lv bin
+    功能说明：根据主键来更新对应数据库字段
+    是否有缓存：无
+    -->
+    update log_module_day
+    <set>
+      <if test="day != null">
+        day = #{day,jdbcType=INTEGER},
+      </if>
+      <if test="count != null">
+        count = #{count,jdbcType=INTEGER},
+      </if>
+      <if test="merchantId != null">
+        merchant_id = #{merchantId,jdbcType=BIGINT},
+      </if>
+      <if test="channelNo != null">
+        channel_no = #{channelNo,jdbcType=VARCHAR},
+      </if>
+      <if test="module != null">
+        module = #{module,jdbcType=VARCHAR},
+      </if>
+      <if test="clazz != null">
+        clazz = #{clazz,jdbcType=VARCHAR},
+      </if>
+      <if test="method != null">
+        method = #{method,jdbcType=VARCHAR},
+      </if>
+      <if test="avgPeriod != null">
+        avg_period = #{avgPeriod,jdbcType=BIGINT},
+      </if>
+      <if test="recordTime != null">
+        record_time = #{recordTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="failCount != null">
+        fail_count = #{failCount,jdbcType=BIGINT},
+      </if>
+      <if test="successCount != null">
+        success_count = #{successCount,jdbcType=BIGINT},
+      </if>
+      <if test="creator != null">
+        creator = #{creator,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifier != null">
+        modifier = #{modifier,jdbcType=BIGINT},
+      </if>
+      modify_time = now(),
+      version = version+1
+    </set>
+    where id = #{id,jdbcType=BIGINT} and version = #{version,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.shfc.log.domain.LogModuleDay">
+    <!--
+    开发负责人：lv bin
+    功能说明：根据主键来更新数据库记录
+    是否有缓存：无
+    -->
+    update log_module_day
+    set day = #{day,jdbcType=INTEGER},
+      count = #{count,jdbcType=INTEGER},
+      merchant_id = #{merchantId,jdbcType=BIGINT},
+      channel_no = #{channelNo,jdbcType=VARCHAR},
+      module = #{module,jdbcType=VARCHAR},
+      clazz = #{clazz,jdbcType=VARCHAR},
+      method = #{method,jdbcType=VARCHAR},
+      avg_period = #{avgPeriod,jdbcType=BIGINT},
+      record_time = #{recordTime,jdbcType=TIMESTAMP},
+      fail_count = #{failCount,jdbcType=BIGINT},
+      success_count = #{successCount,jdbcType=BIGINT},
+      creator = #{creator,jdbcType=BIGINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      modifier = #{modifier,jdbcType=BIGINT},
+      modify_time = now(),
+      version = version+1
+    where id = #{id,jdbcType=BIGINT} and version = #{version,jdbcType=BIGINT}
+  </update>
+  <select id="selectByPage" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" /> 
+    from log_module_day
+    order by create_time desc 
+  </select>
+
+  <select id="checkIsExistDayData" resultType="com.shfc.log.domain.LogModuleDay" parameterType="java.util.HashMap">
+    select
+    lmd.*
+    from log_module_day lmd
+    where lmd.merchant_id = #{merchantId,jdbcType=BIGINT}
+    and lmd.module = #{moduleName,jdbcType=VARCHAR}
+    and lmd.channel_no = #{channelNo,jdbcType=VARCHAR}
+    and DATE_FORMAT(lmd.record_time, '%Y%m%d') = #{dateTimeString, jdbcType=VARCHAR}
+    limit 1
+  </select>
+
+  <select id="getPre2DayRedisStatisticsData" resultType="java.util.HashMap" parameterType="java.util.HashMap">
+    select
+    lmd.count totalCount, date(lmd.record_time) recordDay
+    from log_module_day lmd
+    where lmd.channel_no = #{channelNo, jdbcType=VARCHAR}
+    and lmd.merchant_id = #{merchantId, jdbcType=BIGINT}
+    and lmd.module = 'redis模块'
+    and (date(lmd.record_time) = #{yestdayDate, jdbcType=VARCHAR} or date(lmd.record_time) = #{todayDate, jdbcType=VARCHAR})
+    order by lmd.record_time desc
+  </select>
+
+    <select id="getRedisTotalUseCount" resultType="java.lang.Integer" parameterType="java.util.HashMap">
+      select
+      sum(lmd.count)
+      from log_module_day lmd
+      where lmd.channel_no = #{channelNo, jdbcType=VARCHAR}
+      and lmd.merchant_id = #{merchantId, jdbcType=BIGINT}
+      and lmd.module = 'redis模块'
+    </select>
+</mapper>

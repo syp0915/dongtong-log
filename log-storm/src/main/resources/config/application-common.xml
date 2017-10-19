@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+	   xmlns:aop="http://www.springframework.org/schema/aop"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+                           http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd
+                           http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.0.xsd"
+       default-autowire="byName" default-lazy-init="false">
+
+	<bean id="springContext" class="com.shfc.common.spring.SpringContext"/>
+
+	<context:annotation-config/>
+	<context:component-scan base-package="com.shfc.storm" />
+
+	<bean
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="locations">
+			<list>
+				<value>classpath:dubbo.properties</value>
+				<value>classpath:log-storm-env.properties</value>
+				<value>classpath:redis.properties</value>
+			</list>
+		</property>
+		<property name="searchSystemEnvironment" value="true" />
+		<property name="ignoreUnresolvablePlaceholders" value="true" />
+		<property name="fileEncoding" value="UTF-8"/>
+	</bean>
+
+	<bean id="dubboApplicationConfig" class="com.alibaba.dubbo.config.ApplicationConfig">
+		<property name="name" value="${app_name}"/>
+	</bean>
+
+	<bean id="dubboRegistryConfig" class="com.alibaba.dubbo.config.RegistryConfig">
+		<property name="default" value="true"/>
+		<property name="address" value="${registry.url}"/>
+		<property name="file" value="${registry.file}"/>
+	</bean>
+
+	<bean id="dubboProtocolConfig" class="com.alibaba.dubbo.config.ProtocolConfig">
+		<property name="port" value="${protocol.port}"/>
+	</bean>
+</beans>
+
+
+

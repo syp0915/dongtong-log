@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="cloudbase-provider:war">
+    <output-path>$PROJECT_DIR$/../../ApiProject/cloudbase-service/cloudbase-provider/target</output-path>
+    <root id="archive" name="cloudbase-provider.war">
+      <element id="artifact" artifact-name="cloudbase-provider:war exploded" />
+    </root>
+  </artifact>
+</component>

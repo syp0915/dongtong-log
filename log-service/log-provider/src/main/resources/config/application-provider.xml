@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd"
+       default-lazy-init="true">
+
+    <!--com.alibaba.dubbo.config.spring.ServiceBean-->
+    <bean id="serviceBean" class="com.shfc.dubbo.ServiceBean" abstract="true">
+        <property name="application" ref="dubboApplicationConfig"/>
+        <property name="registry" ref="dubboRegistryConfig"/>
+        <property name="protocol" ref="dubboProtocolConfig"/>
+        <property name="version" value="${provider.default_version}"/>
+        <property name="timeout" value="${provider.timeout}"/>
+    </bean>
+
+    <bean id="logStatisticsService" parent="serviceBean">
+        <property name="interface" value="com.shfc.log.service.LogStatisticsService"/>
+    </bean>
+
+    <bean id="tvBoxLogService" parent="serviceBean">
+        <property name="interface" value="com.shfc.log.service.TVBoxLogService"/>
+    </bean>
+</beans>
